@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.xml.ws.Endpoint;
 
-import br.com.ws.services.CarrinhoService;
+import br.com.ws.services.LivroService;
 
 public class Servidor {
 
@@ -17,8 +17,8 @@ public class Servidor {
 
 	public static void iniciar() {
 		try {
-			CarrinhoService servico = new CarrinhoService();
-	    	String url = "http://localhost:8080/carrinhos";
+			LivroService servico = new LivroService();
+	    	String url = "http://localhost:8080/livros";
 	        server = Endpoint.publish(url, servico);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -27,6 +27,10 @@ public class Servidor {
 	
 	public static void parar() {
 		server.stop();
+	}
+	
+	public static boolean isPublished() {
+		return server.isPublished();
 	}
 
 }
